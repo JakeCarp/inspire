@@ -15,12 +15,25 @@ function draw(todos) {
 	//BUILD YOUR TODO TEMPLATE HERE
 	var template = ''
 	//DONT FORGET TO LOOP
+	todos.forEach(todo => {
+		template += `
+		<div class="form-family">
+			<input type="checkbox" id="${todo._id}" ${todo.completed ? "checked" : ''} name="todo" onchange="app.controllers.todoController.toggleTodoStatus('${todo._id}')"/> <label for="todo" class="words">${todo.description}</label>
+		</div> 
+		`
+		if (todo.completed) {
+			template += `
+			<button onclick="app.controllers.todoController.removeTodo('${todo._id}', event)">Remove</button>
+			`
+		}
+	});
+	document.getElementById('todo-list').innerHTML = template
 }
 
 
 export default class TodoController {
 	constructor() {
-		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+		todoService.getTodos(draw)
 	}
 	// You will need four methods
 	// getTodos should request your api/todos and give an array of todos to your callback fn
@@ -32,10 +45,9 @@ export default class TodoController {
 
 	addTodoFromForm(e) {
 		e.preventDefault() // <-- hey this time its a freebie don't forget this
-		// TAKE THE INFORMATION FORM THE FORM
 		var form = e.target
 		var todo = {
-			// DONT FORGET TO BUILD YOUR TODO OBJECT
+			description: form.newTodo.value
 		}
 
 		//PASSES THE NEW TODO TO YOUR SERVICE
@@ -43,17 +55,23 @@ export default class TodoController {
 		//YOU SHOULDN'T NEED TO CHANGE THIS
 		todoService.addTodo(todo, getTodos)
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
+		form.reset()
 	}
 
 	toggleTodoStatus(todoId) {
 		// asks the service to edit the todo status
-		todoService.toggleTodoStatus(todoId, getTodos)
+		let data = {
+			completed: document.getElementById(todoId).checked,
+			_id: todoId
+		}
+		todoService.toggleTodoStatus(data, getTodos)
 		// YEP THATS IT FOR ME
 	}
 
-	removeTodo(todoId) {
+	removeTodo(todoId, e) {
+		e.preventDefault()
 		// ask the service to run the remove todo with this id
-
+		todoService.removeTodo(todoId, getTodos)
 		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
 	}
 

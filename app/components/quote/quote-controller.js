@@ -2,6 +2,13 @@ import QuoteService from "./quote-service.js";
 
 let qs = new QuoteService
 
+function drawQuote(quote) {
+
+	document.getElementById('quote').innerHTML = `
+	<h4 class="words">${quote.body}</h4>
+	<p class="words"> - ${quote.author}</p>
+	`
+}
 
 export default class QuoteController {
 	constructor() {
@@ -9,8 +16,6 @@ export default class QuoteController {
 	}
 
 	getQuote() {
-		qs.getQuote(function (quote) {
-			console.log('What is the quote', quote)
-		})
+		qs.getQuote(drawQuote)
 	}
 }

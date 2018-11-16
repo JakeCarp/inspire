@@ -3,6 +3,8 @@ const url2 = 'http://www.splashbase.co/api/v1/images/search?query=mountains'
 const apiUrl = url + encodeURIComponent(url2);
 
 
+
+//@ts-ignore
 const imgApi = axios.create({
 	baseURL: apiUrl,
 	timeout: 3000
@@ -14,7 +16,8 @@ export default class ImageService {
 		console.log("Looking for a good pic")
 		imgApi().then(res => {
 			console.log('Image Data:', res.data)
-			callWhenDone(res.data)
+			let image = res.data.images[Math.floor(Math.random() * res.data.images.length - 1)]
+			callWhenDone(image)
 		})
 	}
 }

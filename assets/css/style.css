@@ -1,0 +1,14 @@
+#body {
+  background-size: cover;
+  background-position: center;
+}
+
+.words {
+  color: whitesmoke;
+  text-shadow: 5px black;
+}
+
+
+.card{
+  background-color: transparent;
+}

@@ -3,12 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Inspire</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body id="body">
-	<div id="weather">
-		Your Weather Template
+	<div class="row">
+		<div id="weather" class="col-2">
+
+		</div>
 	</div>
 
 	<div id="quote">
@@ -16,8 +20,16 @@
 	</div>
 
 	<div id="todo">
-		<form onsubmit=""></form>
-		A Todo List
+		<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
+			<div class="form-family">
+				<label for="newTodo">New Todo</label>
+				<input type="text" name="newTodo">
+				<button type="submit">Add Todo</button>
+			</div>
+		</form>
+		<form id="todo-list" onsubmit="">
+
+	</div>
 	</div>
 
 
