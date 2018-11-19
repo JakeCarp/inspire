@@ -6,7 +6,7 @@ var weatherService = new WeatherService()
 function drawWeather(weather) {
 	document.getElementById('weather').innerHTML = `
 <div class="card">
-	<div class="words">${weather.icon}</div>
+	<img src="http://openweathermap.org/img/w/${weather.icon}.png"/>
 	<div class="card-body">
 		<h5 class="card-title words">${weather.main} - ${weather.temp}°</h5>
 		<h5 class="card-title words">${weather.name}</h5>

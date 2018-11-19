@@ -4,11 +4,15 @@
 }
 
 .words {
-  color: whitesmoke;
-  text-shadow: 5px black;
+  color:white;
+  text-shadow: 10px black;
 }
 
 
 .card{
   background-color: transparent;
+}
+
+#quote {
+  margin-top: 10rem;
 }

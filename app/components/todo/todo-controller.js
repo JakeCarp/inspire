@@ -14,6 +14,7 @@ function draw(todos) {
 	//WHAT IS MY PURPOSE?
 	//BUILD YOUR TODO TEMPLATE HERE
 	var template = ''
+	let todocounter = 0
 	//DONT FORGET TO LOOP
 	todos.forEach(todo => {
 		template += `
@@ -21,12 +22,14 @@ function draw(todos) {
 			<input type="checkbox" id="${todo._id}" ${todo.completed ? "checked" : ''} name="todo" onchange="app.controllers.todoController.toggleTodoStatus('${todo._id}')"/> <label for="todo" class="words">${todo.description}</label>
 		</div> 
 		`
+		todocounter++
 		if (todo.completed) {
 			template += `
 			<button onclick="app.controllers.todoController.removeTodo('${todo._id}', event)">Remove</button>
 			`
 		}
 	});
+	document.getElementById('todoCounter').innerText = JSON.stringify(todocounter)
 	document.getElementById('todo-list').innerHTML = template
 }
 

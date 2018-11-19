@@ -14,15 +14,18 @@
 
 		</div>
 	</div>
-
-	<div id="quote">
-		The Quote
+	<div class="row">
+		<div class="col-12 text-center">
+			<div id="quote">
+				The Quote
+			</div>
+		</div>
 	</div>
 
 	<div id="todo">
 		<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
 			<div class="form-family">
-				<label for="newTodo">New Todo</label>
+				<label class="words" for="newTodo">New Todo (<span id="todoCounter"></span>)</label>
 				<input type="text" name="newTodo">
 				<button type="submit">Add Todo</button>
 			</div>
